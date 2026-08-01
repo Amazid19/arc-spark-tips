@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export', // Static Export Enable করার জন্য
-  images: {
-    unoptimized: true,
+  webpack: (config) => {
+    config.externals.push('pino-pretty', 'lokijs', 'encoding', '@x402/svm');
+    return config;
   },
 };
 
