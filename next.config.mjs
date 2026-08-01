@@ -1,11 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   typescript: {
-    // Build করার সময় টাইপস্ক্রিপ্ট এরর ইগনোর করবে
     ignoreBuildErrors: true,
   },
   eslint: {
-    // Build করার সময় ESLint এরর ইগনোর করবে
     ignoreDuringBuilds: true,
   },
   webpack: (config) => {
@@ -13,7 +11,6 @@ const nextConfig = {
       'pino-pretty',
       'lokijs',
       'encoding',
-      '@x402/svm',
       '@solana/web3.js'
     );
     config.resolve.fallback = {
@@ -22,6 +19,11 @@ const nextConfig = {
       net: false,
       tls: false,
       async_hooks: false,
+    };
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@x402/svm': false,
+      '@x402/svm/exact/client': false,
     };
     return config;
   },
